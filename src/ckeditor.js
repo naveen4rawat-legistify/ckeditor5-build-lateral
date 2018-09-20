@@ -11,6 +11,7 @@ import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapte
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
@@ -22,6 +23,9 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
+
+import '../themes/style.css';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -32,6 +36,7 @@ ClassicEditor.builtinPlugins = [
 	Autoformat,
 	Bold,
 	Italic,
+	Underline,
 	BlockQuote,
 	EasyImage,
 	Heading,
@@ -42,7 +47,8 @@ ClassicEditor.builtinPlugins = [
 	ImageUpload,
 	Link,
 	List,
-	Paragraph
+	Paragraph,
+	Highlight
 ];
 
 // Editor configuration.
@@ -51,15 +57,21 @@ ClassicEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
+			'highlight',
+			'|',
 			'bold',
 			'italic',
-			'link',
-			'bulletedList',
+			'underline',
+			'|',
 			'numberedList',
-			'imageUpload',
+			'bulletedList',
+			'|',
 			'blockQuote',
-			'undo',
-			'redo'
+			'|',
+			'link',
+			'|',
+			'imageUpload',
+			'|'
 		]
 	},
 	image: {
