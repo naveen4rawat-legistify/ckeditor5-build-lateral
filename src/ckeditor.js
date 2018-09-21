@@ -53,6 +53,51 @@ ClassicEditor.builtinPlugins = [
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
+	highlight: {
+		options: [
+			{
+				model: 'orangePen',
+				class: 'pen-orange',
+				title: 'Orange',
+				color: '#e59536',
+				type: 'pen'
+			},
+			{
+				model: 'lightBluePen',
+				class: 'pen-light-blue',
+				title: 'Light blue',
+				color: '#30caf7',
+				type: 'pen'
+			},
+			{
+				model: 'darkBluePen',
+				class: 'pen-dark-blue',
+				title: 'Dark blue',
+				color: '#3982a4',
+				type: 'pen'
+			},
+			{
+				model: 'greenPen',
+				class: 'pen-green',
+				title: 'Green',
+				color: '#488f80',
+				type: 'pen'
+			},
+			{
+				model: 'grayPen',
+				class: 'pen-gray',
+				title: 'Dark gray',
+				color: '#4d4d4c',
+				type: 'pen'
+			}
+		]
+	},
+	heading: {
+		options: [
+			{ model: 'paragraph', title: 'Body copy', class: 'ck-heading_paragraph' },
+			{ model: 'heading2', view: 'h2', title: 'Sub Header', class: 'ck-heading_heading2' }
+		]
+	},
 	toolbar: {
 		items: [
 			'heading',

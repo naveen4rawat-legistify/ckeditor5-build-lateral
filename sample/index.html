@@ -28,33 +28,7 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	ClassicEditor.create( document.querySelector( '#editor' ), {
-			highlight: {
-				options: [
-					{
-						model: 'greenPen',
-						class: 'pen-green',
-						title: 'Green',
-						color: 'var(--ck-highlight-pen-green)',
-						type: 'pen'
-					},
-					{
-						model: 'bluePen',
-						class: 'pen-blue',
-						title: 'Blue',
-						color: 'var(--ck-highlight-pen-blue)',
-						type: 'pen'
-					},
-					{
-						model: 'redPen',
-						class: 'pen-red',
-						title: 'Red',
-						color: 'var(--ck-highlight-pen-red)',
-						type: 'pen'
-					},
-				]
-			}
-        })
+	ClassicEditor.create( document.querySelector( '#editor' ))
 		.then( editor => {
 			window.editor = editor;
 		} )
