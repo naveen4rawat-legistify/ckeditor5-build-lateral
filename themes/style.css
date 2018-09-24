@@ -102,6 +102,7 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
     background: 0;
 }
 .ck-rounded-corners .ck.ck-heading-dropdown .ck-dropdown__panel .ck-list .ck-list__item .ck-button:hover {
+    border-radius: 0;
     background-color: var(--ck-custom-box-bg-secondary);
 }
 .ck-heading-dropdown .ck-dropdown__panel .ck.ck-button.ck-on:not(.ck-disabled):hover,
