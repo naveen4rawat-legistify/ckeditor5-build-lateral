@@ -20,8 +20,7 @@ export default class OpogoUploadAdapter extends Plugin {
 	 * @inheritDoc
 	 */
 	init() {
-        //const url = this.editor.config.get( 'ckfinder.uploadUrl' );
-        const url = 'https://api-dev.opogo.com/api/contents/PartnerUploadMedia'
+        const url = this.editor.config.get( 'opogo.uploadUrl' );
 
 		if ( !url ) {
 			return;

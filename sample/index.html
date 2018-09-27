@@ -28,7 +28,11 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	ClassicEditor.create( document.querySelector( '#editor' ))
+	ClassicEditor.create( document.querySelector( '#editor' ), {
+			opogo: {
+				uploadUrl: 'https://api-dev.opogo.com/api/contents/PartnerUploadMedia'
+        	}
+		})
 		.then( editor => {
 			window.editor = editor;
 		} )
