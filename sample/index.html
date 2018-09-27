@@ -30,7 +30,8 @@
 <script>
 	ClassicEditor.create( document.querySelector( '#editor' ))
 		.then( editor => {
-			window.editor = editor;
+			window.editor = editor;			
+			console.log( 'Editor was initialized', editor );
 		} )
 		.catch( err => {
 			console.error( err.stack );

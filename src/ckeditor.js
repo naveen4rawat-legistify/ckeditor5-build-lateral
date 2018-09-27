@@ -25,6 +25,10 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 
+// plugins
+import InsertImage from '../custom-plugin/insert-image';
+import ImageDropdown from '../custom-plugin/image-dropdown';
+
 import '../themes/style.css';
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -48,7 +52,9 @@ ClassicEditor.builtinPlugins = [
 	Link,
 	List,
 	Paragraph,
-	Highlight
+	Highlight,
+	InsertImage,
+	ImageDropdown
 ];
 
 // Editor configuration.
@@ -123,15 +129,24 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'|',
 			'imageUpload',
-			'|'
+			'|',
+			'insertImage',
+			'|',
+			'imageDropdown'
 		]
 	},
 	image: {
 		toolbar: [
+			'imageStyle:alignLeft',
 			'imageStyle:full',
-			'imageStyle:side',
+			'imageStyle:alignRight',
 			'|',
 			'imageTextAlternative'
+		],
+		styles: [
+			'full',
+			'alignLeft',
+			'alignRight'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
