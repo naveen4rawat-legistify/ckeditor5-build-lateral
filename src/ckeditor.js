@@ -128,10 +128,10 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'link',
 			'|',
-			'imageUpload',
+			/*'imageUpload',
 			'|',
 			'insertImage',
-			'|',
+			'|',*/
 			'imageDropdown'
 		]
 	},

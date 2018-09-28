@@ -58,8 +58,8 @@ a.ck.ck-button.ck-rounded-corners,
 .ck.ck-splitbutton > .ck-splitbutton__arrow.ck-rounded-corners,
 .ck-rounded-corners .ck.ck-tooltip .ck-tooltip__text,
 .ck.ck-tooltip .ck-tooltip__text.ck-rounded-corners,
-.ck-rounded-corners .ck.ck-dropdown .ck-dropdown__panel .ck-list .ck-list__item:first-child .ck-button,
-.ck-rounded-corners .ck.ck-dropdown .ck-dropdown__panel .ck-list .ck-list__item:last-child .ck-button {
+.ck-rounded-corners .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel .ck-list .ck-list__item:first-child .ck-button,
+.ck-rounded-corners .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel .ck-list .ck-list__item:last-child .ck-button {
     border-radius: 0;
 }
 .ck.ck-button.ck-on:not(.ck-disabled):hover,
@@ -107,9 +107,11 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
 .ck-dropdown__panel-visible .ck-list__item .ck-button:hover,
 .ck-dropdown__panel-visible .ck-list__item .ck-button:hover:not(.ck-disabled),
 .ck-dropdown__panel-visible .ck-button:not(.ck-disabled):hover,
-.ck-dropdown__panel-visible a.ck-button:not(.ck-disabled):hover{
+.ck-dropdown__panel-visible a.ck-button:not(.ck-disabled):hover,
+.ck-image-dropdown > .ck.ck-button.ck-on,
+.ck-image-dropdown > .ck.ck-button:not(.ck-disabled):hover {
     border-radius: 0;
-    background-color: var(--ck-custom-box-bg-secondary);
+    background: var(--ck-custom-box-bg-secondary);
 }
 .ck-heading-dropdown .ck-dropdown__panel .ck.ck-button.ck-on:not(.ck-disabled):hover,
 .ck-heading-dropdown .ck-dropdown__panel a.ck.ck-button.ck-on:not(.ck-disabled):hover {
@@ -158,3 +160,17 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
 .pen-dark-blue  { color: var(--ck-custom-blue-dark); }
 .pen-green      { color: var(--ck-custom-green); }
 .pen-gray       { color: var(--ck-custom-gray-dark); }
+
+/* image dropdown */
+
+.ck.ck-dropdown.ck-image-dropdown > .ck.ck-button {
+    max-width: 44px;
+    background: url('../node_modules/@ckeditor/ckeditor5-core/theme/icons/image.svg') no-repeat center center;
+    background-size: 51%;
+}
+.ck.ck-dropdown.ck-image-dropdown > .ck.ck-button:hover {
+    background-color: #e6e6e6;
+}
+.ck-image-dropdown .ck-dropdown__arrow {
+    display: none;
+}

@@ -1,19 +1,32 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-
 import Model from '@ckeditor/ckeditor5-ui/src/model';
+
+import { createDropdown, addListToDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
 import Collection from '@ckeditor/ckeditor5-utils/src/collection';
-import { addListToDropdown, createDropdown } from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
+
 import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
 
+/**
+ * The Image UI feature. It introduces the `Add image` dropdown.
+ *
+ * @extends module:core/plugin~Plugin
+ */
 export default class ImageDropdown extends Plugin {
     
     static get pluginName() {
         return 'ImageDropdown';
-	}
-
+    }
+    
+    /**
+	 * @inheritDoc
+	 */
     init() {
         const editor = this.editor;
+        const t = editor.t;
+        const defaultTitle = t('Add image');
+        const dropdownTooltip = t('Image');
 
+        // Register UI component
         editor.ui.componentFactory.add('imageDropdown', locale => {
 
             const dropdownView = createDropdown( locale );
@@ -22,6 +35,18 @@ export default class ImageDropdown extends Plugin {
                 label: 'Image',
                 tooltip: true
             });
+            dropdownView.buttonView.set( {
+				isOn: false,
+				withText: true,
+				tooltip: dropdownTooltip
+            });
+            dropdownView.extendTemplate( {
+				attributes: {
+					class: [
+						'ck-image-dropdown'
+					]
+				}
+			});
 
             // The collection of the list items.
             const items = new Collection();
