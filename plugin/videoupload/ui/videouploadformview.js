@@ -1,6 +1,5 @@
-
 /**
- * @module videoupload/ui/urlformview
+ * @module videoupload/ui/videouploadformview
  */
 
 import View from '@ckeditor/ckeditor5-ui/src/view';
@@ -17,14 +16,20 @@ import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
 
 import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
 import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
+
+import uploadIcon from '../theme/icons/upload.svg';
+import FileDialogButtonView from '@ckeditor/ckeditor5-upload/src/ui/filedialogbuttonview';
+
 import '../theme/urlform.css';
 
 /**
- * The url form view controller class.
+ * The video upload form view controller class.
  * @extends module:ui/view~View
  */
-export default class UrlFormView extends View {
-
+export default class VideoUploadFormView extends View {
+    /**
+	 * @inheritDoc
+	 */
 	constructor( locale ) {
 		super( locale );
 
@@ -66,7 +71,30 @@ export default class UrlFormView extends View {
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
-		this.cancelButtonView = this._createButton( t( 'Cancel' ), cancelIcon, 'ck-button-cancel', 'cancel' );
+        this.cancelButtonView = this._createButton( t( 'Cancel' ), cancelIcon, 'ck-button-cancel', 'cancel' );
+               
+
+        /**
+		 * A hidden `<input>` view used to execute file dialog.
+		 *
+		 * @protected
+		 * @member {module:upload/ui/FileDialogButtonView}
+		 */
+        this.fileInputView = new FileDialogButtonView( locale );
+        
+        this.fileInputView.set( {
+            acceptedType: 'video/*',
+            allowMultipleFiles: true
+        } );
+
+        this.fileInputView.buttonView.set( {
+            label: t( 'Upload video' ),
+            icon: uploadIcon,
+            tooltip: true
+        } );
+
+        this.fileInputView.delegate( 'done' ).to( this );
+       
 
 		/**
 		 * A collection of views which can be focused in the form.
@@ -111,6 +139,7 @@ export default class UrlFormView extends View {
 			},
 
 			children: [
+                this.fileInputView, 
 				this.urlInputView,
 				this.saveButtonView,
 				this.cancelButtonView
@@ -129,6 +158,7 @@ export default class UrlFormView extends View {
 		} );
 
 		const childViews = [
+            this.fileInputView, 
 			this.urlInputView,
 			this.saveButtonView,
 			this.cancelButtonView
@@ -197,7 +227,7 @@ export default class UrlFormView extends View {
 
 		if ( eventName ) {
 			button.delegate( 'execute' ).to( this, eventName );
-		}
+        }
 
 		return button;
 	}

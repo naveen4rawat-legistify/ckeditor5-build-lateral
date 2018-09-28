@@ -32,7 +32,7 @@ export default class OpogoUploadAdapter extends Plugin {
 }
 
 /**
- * Upload adapter for CKFinder.
+ * Upload adapter
  *
  * @private
  * @implements module:upload/filerepository~UploadAdapter
@@ -154,41 +154,9 @@ class UploadAdapter {
 	_sendRequest() {
 		// Prepare form data.
 		const data = new FormData();
-		data.append( 'upload', this.loader.file );
-		//data.append( 'ckCsrfToken', getCsrfToken() );
+		data.append( 'file', this.loader.file );
 
 		// Send request.
 		this.xhr.send( data );
 	}
 }
-
-/**
- * The configuration of the {@link module:adapter-ckfinder/uploadadapter~CKFinderUploadAdapter CKFinder upload adapter}.
- *
- * Read more in {@link module:adapter-ckfinder/uploadadapter~CKFinderAdapterConfig}.
- *
- * @member {module:adapter-ckfinder/uploadadapter~CKFinderAdapterConfig} module:core/editor/editorconfig~EditorConfig#ckfinder
- */
-
-/**
- * The configuration of the {@link module:adapter-ckfinder/uploadadapter~CKFinderUploadAdapter CKFinder upload adapter}.
- *
- *		ClassicEditor
- *			.create( editorElement, {
- * 				ckfinder: {
- *					uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
- * 				}
- *			} )
- *			.then( ... )
- *			.catch( ... );
- *
- * See {@link module:core/editor/editorconfig~EditorConfig all editor options}.
- *
- * @interface CKFinderAdapterConfig
- */
-
-/**
- * The URL to which files should be uploaded.
- *
- * @member {String} module:adapter-ckfinder/uploadadapter~CKFinderAdapterConfig#uploadUrl
- */

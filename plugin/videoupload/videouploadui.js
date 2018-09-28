@@ -12,6 +12,7 @@ import clickOutsideHandler from '@ckeditor/ckeditor5-ui/src/bindings/clickoutsid
 
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import UrlFormView from './ui/urlformview';
+import VideoUploadFormView from './ui/videouploadformview';
 
 import mediaIcon from './theme/icons/media.svg';
 
@@ -57,14 +58,14 @@ export default class VideoUploadUI extends Plugin {
 	 */
 	_createFormView() {
 		const editor = this.editor;
-		const formView = new UrlFormView( editor.locale );
+		const formView = new VideoUploadFormView( editor.locale );
 		const videoUploadCommand = editor.commands.get( 'videoUpload' );
 
 		formView.saveButtonView.bind( 'isEnabled' ).to( videoUploadCommand );
 
 		// Execute video upload command after clicking the "Save" button.
 		this.listenTo( formView, 'submit', () => {
-			editor.execute( 'videoUpload', formView.urlInputView.inputView.element.value );
+			editor.execute( 'videoUpload', { link: formView.urlInputView.inputView.element.value } );
 			this._removeFormView();
 		} );
 
@@ -72,6 +73,16 @@ export default class VideoUploadUI extends Plugin {
 		this.listenTo( formView, 'cancel', () => {
 			this._removeFormView();
 		} );
+
+		// Execute video upload command after clicking the "Upload" button.
+		formView.on( 'done', ( evt, files ) => {
+			const file = files[0];
+			//editor.execute( 'videoUpload', { link: 'https://www.youtube.com/watch?v=G1q2YQSH7rU' } );
+			editor.execute( 'videoUpload', { file: file } );
+			this._removeFormView();
+		} );
+
+		
 
 		// Close the panel on esc key press when the **form has focus**.
 		formView.keystrokes.set( 'Esc', ( data, cancel ) => {
