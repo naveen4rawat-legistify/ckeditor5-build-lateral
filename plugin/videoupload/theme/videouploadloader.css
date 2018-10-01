@@ -3,11 +3,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	top: 0;
-	left: 0;
+}
 
-	&::before {
-		content: '';
-		position: relative;
-	}
+.ck .ck-upload-placeholder-loader::before {
+	content: '';
+	position: relative;
+	z-index: 10;
+	border: 4px solid #30caf7;
+	border-right-color: transparent;
 }

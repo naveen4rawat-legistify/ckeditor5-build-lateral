@@ -77,7 +77,9 @@ export default class VideoUploadCommand extends Command {
 				
 				const videoUpload = writer.createElement( 'videoUpload', 
 				{ 
-					uploadId: loader.id, 
+					uploadId : loader.id, 
+					width : 0, 
+					height : 0, 
 					frameborder : 0, 
 					allow : "autoplay; encrypted-media",
 					allowfullscreen : true

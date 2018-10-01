@@ -87,7 +87,7 @@ export default class VideoUploadProgress extends Plugin {
 			// Start appear effect if needed 
 			_startAppearEffect( viewFigure, viewWriter );
 
-			if ( !loader ) {
+			/*if ( !loader ) {
 				// There is no loader associated with uploadId - this means that video came from external changes.
 				// In such cases we still want to show the placeholder until video is fully uploaded.
 				// Show placeholder if needed 
@@ -96,7 +96,9 @@ export default class VideoUploadProgress extends Plugin {
 				// Hide placeholder and initialize progress bar showing upload progress.
 				_hidePlaceholder( viewFigure, viewWriter );
 				_showProgressBar( viewFigure, viewWriter, loader, editor.editing.view );
-			}
+			}*/
+
+			_showProgressBar( viewFigure, viewWriter, loader, editor.editing.view );
 
 			return;
 		}
@@ -147,15 +149,19 @@ function _showPlaceholder( placeholder, viewFigure, writer ) {
 		writer.addClass( 'ck-video-upload-placeholder', viewFigure );
 	}
 
-	/*const viewImg = viewFigure.getChild( 0 );
+	const viewVideo = viewFigure.getChild( 0 );
 
-	if ( viewImg.getAttribute( 'src' ) !== placeholder ) {
+	/*if ( viewImg.getAttribute( 'src' ) !== placeholder ) {
 		writer.setAttribute( 'src', placeholder, viewImg );
 	}
 
 	if ( !_getUIElement( viewFigure, placeholderSymbol ) ) {
 		writer.insert( ViewPosition.createAfter( viewImg ), _createPlaceholder( writer ) );
 	}*/
+
+	if ( !_getUIElement( viewFigure, placeholderSymbol ) ) {
+		writer.insert( ViewPosition.createAfter( viewVideo ), _createPlaceholder( writer ) );
+	}
 }
 
 // Removes placeholder together with infinite progress bar on given video figure.
@@ -203,7 +209,7 @@ function _hideProgressBar( viewFigure, writer ) {
 // @param {module:engine/view/writer~Writer} writer
 // @param {module:engine/view/view~View} view
 function _showCompleteIcon( viewFigure, writer, view ) {
-	const completeIcon = new UIElement( 'div', { class: 'ck-video-upload-complete-icon' } );
+	const completeIcon = new UIElement( 'div', { class: 'ck-image-upload-complete-icon' } );
 
 	writer.insert( ViewPosition.createAt( viewFigure, 'end' ), completeIcon );
 

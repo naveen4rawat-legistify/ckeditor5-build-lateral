@@ -1,16 +1,31 @@
 /* Infinite progress bar default width. */
 :root {
 	--ck-video-upload-progress-line-width: 30px;
+	--ck-color-upload-bar-background: #30caf7;
 }
 
-.ck-content .videoUpload {
+.ck-content .video-container {
 	position: relative;
 	overflow: hidden;
+
+	/* Showing animation. */
+	&.ck-appear {
+		animation: fadeIn 700ms;
+	}
 
 	/* Upload progress bar. */
 	& .ck-progress-bar {
 		position: absolute;
 		top: 0;
 		left: 0;
+		height: 4px;
+		width: 0;
+		background: var(--ck-color-upload-bar-background);
+		transition: width 100ms;
 	}
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to   { opacity: 1; }
 }

@@ -123,9 +123,7 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'|',
 			'imageUpload',
-			'|', 
-			'videoUpload',
-			'|'
+			'videoUpload'
 		]
 	},
 	image: {

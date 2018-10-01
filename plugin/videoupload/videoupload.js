@@ -7,6 +7,8 @@ import VideoUploadEditing from './videouploadediting';
 import VideoUploadUI from './videouploadui';
 import VideoUploadProgress from './videouploadprogress';
 
+import './theme/videoupload.css';
+
 /**
  * The video upload plugin. It introduces the video upload buttons and the <kbd>Ctrl+Shift+K</kbd> keystroke.
  *
@@ -15,7 +17,7 @@ import VideoUploadProgress from './videouploadprogress';
 export default class VideoUpload extends Plugin {
 
 	static get requires() {
-		return [ VideoUploadEditing, VideoUploadUI/*, VideoUploadProgress*/ ];
+		return [ VideoUploadEditing, VideoUploadUI, VideoUploadProgress ];
 	}
 
 

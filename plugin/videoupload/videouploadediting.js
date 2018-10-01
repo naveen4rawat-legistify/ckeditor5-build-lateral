@@ -3,9 +3,11 @@
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { upcastElementToElement } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
+import { downcastElementToElement } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
+import { upcastElementToElement, upcastAttributeToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
 import FileRepository from '@ckeditor/ckeditor5-upload/src/filerepository';
 import Notification from '@ckeditor/ckeditor5-ui/src/notification/notification';
+import ViewPosition from '@ckeditor/ckeditor5-engine/src/view/position';
 import VideoUploadCommand from './videouploadcommand';
 import {parseYtubeEmbed, ensureSafeUrl} from './utils';
 import { downcastAttributeToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
@@ -39,14 +41,23 @@ export default class VideoUploadEditing extends Plugin {
 		editor.conversion.elementToElement( {
 			model: 'videoUpload',
 			view: ( modelElement, viewWriter ) => {
-				return viewWriter ? viewWriter.createEmptyElement( 'iframe', modelElement.getAttributes()):'';
+				//return viewWriter ? viewWriter.createEmptyElement( 'iframe', modelElement.getAttributes()):'';
+				return viewWriter ? createVideoViewElement( viewWriter ):'';
 			}
 		} ) ;
+
+		/*editor.conversion.for( 'dataDowncast' ).add( downcastElementToElement( {
+			model: 'iframe',
+			view: ( modelElement, viewWriter ) => createVideoViewElement( viewWriter )
+		} ) );*/
 
 		editor.conversion.for( 'downcast' )
 			.add( modelToViewAttributeConverter( 'src' ) )
 			.add( modelToViewAttributeConverter( 'width' ) )
-			.add( modelToViewAttributeConverter( 'height' ) );
+			.add( modelToViewAttributeConverter( 'height' ) )
+			.add( modelToViewAttributeConverter( 'frameborder' ) )
+			.add( modelToViewAttributeConverter( 'allow' ) )
+			.add( modelToViewAttributeConverter( 'allowfullscreen' ) );
 
 		editor.conversion.for( 'upcast' )
 			.add( upcastElementToElement( {
@@ -194,12 +205,29 @@ export function modelToViewAttributeConverter( attributeKey ) {
 
 		const viewWriter = conversionApi.writer;
 		const videoUploadElement = conversionApi.mapper.toViewElement( data.item );
-		//const img = figure.getChild( 0 );
+		const iframe = videoUploadElement.getChild( 0 );
 
 		if ( data.attributeNewValue !== null ) {
-			viewWriter.setAttribute( data.attributeKey, data.attributeNewValue, videoUploadElement );
+			viewWriter.setAttribute( data.attributeKey, data.attributeNewValue, iframe );
 		} else {
-			viewWriter.removeAttribute( data.attributeKey, videoUploadElement );
+			viewWriter.removeAttribute( data.attributeKey, iframe );
 		}
 	}
+}
+
+// Creates a view element representing the video.
+//
+//		<div class="video-container"><iframe></iframe></div>
+//
+//
+// @private
+// @param {module:engine/view/writer~Writer} writer
+// @returns {module:engine/view/containerelement~ContainerElement}
+export function createVideoViewElement( writer ) {
+	const emptyElement = writer.createEmptyElement( 'iframe' );
+	const divContainer = writer.createContainerElement( 'div', { class: 'video-container' } );
+
+	writer.insert( ViewPosition.createAt( divContainer ), emptyElement );
+
+	return divContainer;
 }
