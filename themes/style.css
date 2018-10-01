@@ -163,14 +163,26 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
 
 /* image dropdown */
 
-.ck.ck-dropdown.ck-image-dropdown > .ck.ck-button {
-    max-width: 44px;
-    background: url('../node_modules/@ckeditor/ckeditor5-core/theme/icons/image.svg') no-repeat center center;
-    background-size: 51%;
+.ck.ck-dropdown.ck-image-dropdown > .ck.ck-button .ck-button__icon {
+    margin-left: 1px;
+    margin-right: 0;
 }
 .ck.ck-dropdown.ck-image-dropdown > .ck.ck-button:hover {
     background-color: #e6e6e6;
 }
+.ck-image-dropdown .ck-button.ck-dropdown__button .ck-button__label,
 .ck-image-dropdown .ck-dropdown__arrow {
     display: none;
+}
+.ck.ck-balloon-panel {
+    background-color: var(--ck-custom-box-bg-secondary);
+}
+.ck.ck-balloon-panel.ck-balloon-panel_arrow_s:after,
+.ck.ck-balloon-panel.ck-toolbar-container[class*=arrow_s]:after {
+    border-top-color: var(--ck-custom-box-bg-secondary);
+}
+.ck-balloon-panel .ck.ck-input-text,
+.ck-balloon-panel .ck.ck-input-text:focus {
+    box-shadow: none;
+    border: 1px solid var(--ck-custom-border-color);
 }

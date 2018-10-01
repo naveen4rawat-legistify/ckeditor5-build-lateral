@@ -22,24 +22,16 @@ export default class ImageDropdown extends Plugin {
 	 */
     init() {
         const editor = this.editor;
-        const t = editor.t;
-        const defaultTitle = t('Add image');
-        const dropdownTooltip = t('Image');
 
         // Register UI component
         editor.ui.componentFactory.add('imageDropdown', locale => {
 
             const dropdownView = createDropdown( locale );
 
-            dropdownView.set({
-                label: 'Image',
-                tooltip: true
-            });
             dropdownView.buttonView.set( {
-				isOn: false,
-				withText: true,
-				tooltip: dropdownTooltip
+                icon: imageIcon
             });
+            
             dropdownView.extendTemplate( {
 				attributes: {
 					class: [
