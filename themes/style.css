@@ -44,7 +44,7 @@
 }
 .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
     box-shadow: none;
-    border-color: var(--ck-custom-blue-light);
+    border-color: var(--ck-custom-border-color);
 }
 
 /* toolbar buttons */
