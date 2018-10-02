@@ -1,5 +1,5 @@
 /**
- * @module videoupload/utils
+ * @module videourl/utils
  */
 
 const ATTRIBUTE_WHITESPACES = /[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205f\u3000]/g; // eslint-disable-line no-control-regex
@@ -19,17 +19,14 @@ export function parseYtubeEmbed( src ) {
 		var clientWidth = parseInt(_ckeditorTopDiv[0].clientWidth);
 		_ckeditorTopDivWidth = clientWidth > 100 ? clientWidth - 30 : clientWidth;
 	}
-	var _width = _ckeditorTopDivWidth ? _ckeditorTopDivWidth:640;
+	var _width = _ckeditorTopDivWidth ? _ckeditorTopDivWidth : 640;
 	var _height = parseInt(_width) * 0.5620;
 	var _frameborder = 0;
-	var _src = "";
-
-
+	var _src = '';
 
 	var src_element = src ? src.split(" "):[];
 
 	// console.log(src_element);
-
 	for (var i = 0; i < src_element.length; i++) {
 		if(src_element[i].includes("http") && !src_element[i].includes('src="http') && !src_element[i].includes('href="http') ){
 

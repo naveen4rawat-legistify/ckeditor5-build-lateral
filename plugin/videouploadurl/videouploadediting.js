@@ -3,12 +3,14 @@
  */
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import { downcastElementToElement, downcastAttributeToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
+import { downcastElementToElement } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
 import { upcastElementToElement, upcastAttributeToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/upcast-converters';
 import FileRepository from '@ckeditor/ckeditor5-upload/src/filerepository';
 import Notification from '@ckeditor/ckeditor5-ui/src/notification/notification';
 import ViewPosition from '@ckeditor/ckeditor5-engine/src/view/position';
 import VideoUploadCommand from './videouploadcommand';
+import {parseYtubeEmbed, ensureSafeUrl} from './utils';
+import { downcastAttributeToAttribute } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
 
 /**
  * The embed engine feature.
@@ -33,33 +35,41 @@ export default class VideoUploadEditing extends Plugin {
 			isBlock: true,
 			allowWhere: '$block',
 			allowIn: '$block',
-			allowAttributes: [ 'width', 'height', 'src', 'controls', 'controlsList', 'uploadId', 'uploadStatus' ]
+			allowAttributes: [ 'width', 'height', 'src', 'frameborder', 'allow', 'allowfullscreen', 'uploadId', 'uploadStatus' ]
 		} );
 
 		editor.conversion.elementToElement( {
 			model: 'videoUpload',
 			view: ( modelElement, viewWriter ) => {
+				//return viewWriter ? viewWriter.createEmptyElement( 'iframe', modelElement.getAttributes()):'';
 				return viewWriter ? createVideoViewElement( viewWriter ):'';
 			}
 		} ) ;
+
+		/*editor.conversion.for( 'dataDowncast' ).add( downcastElementToElement( {
+			model: 'iframe',
+			view: ( modelElement, viewWriter ) => createVideoViewElement( viewWriter )
+		} ) );*/
 
 		editor.conversion.for( 'downcast' )
 			.add( modelToViewAttributeConverter( 'src' ) )
 			.add( modelToViewAttributeConverter( 'width' ) )
 			.add( modelToViewAttributeConverter( 'height' ) )
-			.add( modelToViewAttributeConverter( 'controls' ) )
-			.add( modelToViewAttributeConverter( 'controlsList' ) );
+			.add( modelToViewAttributeConverter( 'frameborder' ) )
+			.add( modelToViewAttributeConverter( 'allow' ) )
+			.add( modelToViewAttributeConverter( 'allowfullscreen' ) );
 
 		editor.conversion.for( 'upcast' )
 			.add( upcastElementToElement( {
-				view: 'video',
+				view: 'iframe',
 			    model: ( viewElement, modelWriter ) => {
 			        return modelWriter.createElement( 'videoUpload', {
-						src: viewElement.getAttribute( 'src' ) ? viewElement.getAttribute( 'src' ) : '',
-						width: viewElement.getAttribute( 'width' ) ? viewElement.getAttribute( 'width' ) : 640,
-			        	height: viewElement.getAttribute( 'height' ) ? viewElement.getAttribute( 'height' ) : 480, 
-						controls: '',
-						controlsList: 'nodownload'
+			        	src: viewElement.getAttribute( 'src' ) ? viewElement.getAttribute( 'src' ) : '',
+			        	width: viewElement.getAttribute( 'width' ) ? viewElement.getAttribute( 'width' ) : 640,
+			        	height: viewElement.getAttribute( 'height' ) ? viewElement.getAttribute( 'height' ) : 480,
+			        	frameborder: viewElement.getAttribute( 'frameborder' ) ? viewElement.getAttribute( 'frameborder' ) : 0,
+			        	allowfullscreen: viewElement.getAttribute( 'allowfullscreen' ) ? viewElement.getAttribute( 'allowfullscreen' ) : true,
+			        	allow: viewElement.getAttribute( 'allow' ) ? viewElement.getAttribute( 'allow' ) : 'autoplay; encrypted-media'
 			        } );
 			    }
 			} ) );
@@ -137,7 +147,13 @@ export default class VideoUploadEditing extends Plugin {
 			} )
 			.then( data => {
 				model.enqueueChange( 'transparent', writer => {
-					writer.setAttributes( { uploadStatus: 'complete', src: data.default }, videoElement );
+					writer.setAttributes( { uploadStatus: 'complete'/*, src: data */ }, videoElement );
+
+					const link = 'https://www.youtube.com/watch?v=G1q2YQSH7rU';
+					let attributes = parseYtubeEmbed(link);
+					attributes.src = ensureSafeUrl( attributes.src );
+					writer.setAttributes ( attributes , videoElement );
+
 				} );
 
 				clean();
@@ -201,14 +217,14 @@ export function modelToViewAttributeConverter( attributeKey ) {
 
 // Creates a view element representing the video.
 //
-//		<div class="video-container"><video></video></div>
+//		<div class="video-container"><iframe></iframe></div>
 //
 //
 // @private
 // @param {module:engine/view/writer~Writer} writer
 // @returns {module:engine/view/containerelement~ContainerElement}
 export function createVideoViewElement( writer ) {
-	const emptyElement = writer.createEmptyElement( 'video' );
+	const emptyElement = writer.createEmptyElement( 'iframe' );
 	const divContainer = writer.createContainerElement( 'div', { class: 'video-container' } );
 
 	writer.insert( ViewPosition.createAt( divContainer ), emptyElement );

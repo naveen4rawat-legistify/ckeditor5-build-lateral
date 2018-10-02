@@ -23,7 +23,7 @@ import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
-import VideoUpload from '../plugin/videoupload/videoupload';
+import VideoDropdown from '../plugin/videodropdown/videodropdown';
 
 import '../themes/style.css';
 
@@ -48,7 +48,7 @@ ClassicEditor.builtinPlugins = [
 	List,
 	Paragraph,
 	Highlight, 
-	VideoUpload
+	VideoDropdown
 ];
 
 // Editor configuration.
@@ -123,7 +123,7 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'|',
 			'imageUpload',
-			'videoUpload'
+			'videoDropdown'
 		]
 	},
 	image: {
