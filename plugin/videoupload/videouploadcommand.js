@@ -39,20 +39,10 @@ export default class VideoUploadCommand extends Command {
 				return;
 			}
 
-			let _ckeditorTopDivWidth = null;
-			let _ckeditorTopDiv = document.getElementsByClassName('ck-editor__top');
-
-			if(_ckeditorTopDiv && _ckeditorTopDiv[0] && _ckeditorTopDiv[0].clientWidth){
-				var clientWidth = parseInt(_ckeditorTopDiv[0].clientWidth);
-				_ckeditorTopDivWidth = clientWidth > 100 ? clientWidth - 30 : clientWidth;
-			}
-			var _width = _ckeditorTopDivWidth ? _ckeditorTopDivWidth : 640;
-			var _height = parseInt(_width) * 0.5620;
-
 			const videoElement = writer.createElement( 'videoUpload', {
 				uploadId: loader.id, 
-				width: _width, 
-				height: _height, 
+				width: 0, 
+				height: 0, 
 				controls : '', 
 				controlsList : 'nodownload' 
 			} );

@@ -137,7 +137,22 @@ export default class VideoUploadEditing extends Plugin {
 			} )
 			.then( data => {
 				model.enqueueChange( 'transparent', writer => {
-					writer.setAttributes( { uploadStatus: 'complete', src: data.default }, videoElement );
+					let _ckeditorTopDivWidth = null;
+					let _ckeditorTopDiv = document.getElementsByClassName('ck-editor__top');
+
+					if(_ckeditorTopDiv && _ckeditorTopDiv[0] && _ckeditorTopDiv[0].clientWidth){
+						var clientWidth = parseInt(_ckeditorTopDiv[0].clientWidth);
+						_ckeditorTopDivWidth = clientWidth > 100 ? clientWidth - 30 : clientWidth;
+					}
+					var _width = _ckeditorTopDivWidth ? _ckeditorTopDivWidth : 640;
+					var _height = parseInt(_width) * 0.5620;
+
+					writer.setAttributes( { 
+						uploadStatus: 'complete', 
+						src: data.default, 
+						width: _width, 
+						height: _height,  
+					}, videoElement );
 				} );
 
 				clean();
