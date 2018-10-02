@@ -28,40 +28,72 @@ export default class VideoUploadCommand extends Command {
 
 		const editor = this.editor;
 		const doc = editor.model.document;
-		const file = options.file;
-		const fileRepository = editor.plugins.get( FileRepository );
 
-		editor.model.change( writer => {
-			const loader = fileRepository.createLoader( file );
+		if (options.link) {
+			const link = options.link;
 
-			// Do not throw when upload adapter is not set. FileRepository will log an error anyway.
-			if ( !loader ) {
-				return;
-			}
+			editor.model.change( writer => {
 
-			const videoElement = writer.createElement( 'videoUpload', {
-				uploadId: loader.id, 
-				width: 0, 
-				height: 0, 
-				controls : '', 
-				controlsList : 'nodownload' 
+				const videoElement = writer.createElement( 'videoUpload', {
+					src: link, 
+					controls : '', 
+					controlsList : 'nodownload' 
+				} );
+
+				let insertAtSelection;
+
+				if ( options.insertAt ) {
+					insertAtSelection = new ModelSelection( [ new ModelRange( options.insertAt ) ] );
+				} else {
+					insertAtSelection = doc.selection;
+				}
+
+				editor.model.insertContent( videoElement, insertAtSelection );
+
+				// Inserting an video might've failed due to schema regulations.
+				if ( videoElement.parent ) {
+					writer.setSelection( videoElement, 'on' );
+				}
+
 			} );
 
-			let insertAtSelection;
+		} else {
 
-			if ( options.insertAt ) {
-				insertAtSelection = new ModelSelection( [ new ModelRange( options.insertAt ) ] );
-			} else {
-				insertAtSelection = doc.selection;
-			}
+			const file = options.file;
+			const fileRepository = editor.plugins.get( FileRepository );
 
-			editor.model.insertContent( videoElement, insertAtSelection );
+			editor.model.change( writer => {
+				const loader = fileRepository.createLoader( file );
 
-			// Inserting an video might've failed due to schema regulations.
-			if ( videoElement.parent ) {
-				writer.setSelection( videoElement, 'on' );
-			}
-		} );
+				// Do not throw when upload adapter is not set. FileRepository will log an error anyway.
+				if ( !loader ) {
+					return;
+				}
+
+				const videoElement = writer.createElement( 'videoUpload', {
+					uploadId: loader.id, 
+					width: 0, 
+					height: 0, 
+					controls : '', 
+					controlsList : 'nodownload' 
+				} );
+
+				let insertAtSelection;
+
+				if ( options.insertAt ) {
+					insertAtSelection = new ModelSelection( [ new ModelRange( options.insertAt ) ] );
+				} else {
+					insertAtSelection = doc.selection;
+				}
+
+				editor.model.insertContent( videoElement, insertAtSelection );
+
+				// Inserting an video might've failed due to schema regulations.
+				if ( videoElement.parent ) {
+					writer.setSelection( videoElement, 'on' );
+				}
+			} );
+		}
 		
 	}
 }
