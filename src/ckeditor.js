@@ -54,6 +54,7 @@ ClassicEditor.builtinPlugins = [
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	highlight: {
+		label: 'Text colour',
 		options: [
 			{
 				model: 'orangePen',
