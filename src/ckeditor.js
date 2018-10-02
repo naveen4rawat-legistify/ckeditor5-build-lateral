@@ -126,13 +126,19 @@ ClassicEditor.defaultConfig = {
 			'imageUpload',
 			'videoDropdown'
 		]
-	},
+	},	
 	image: {
 		toolbar: [
+			'imageStyle:alignLeft',
 			'imageStyle:full',
-			'imageStyle:side',
+			'imageStyle:alignRight',
 			'|',
 			'imageTextAlternative'
+		],
+		styles: [
+			'full',
+			'alignLeft',
+			'alignRight'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
