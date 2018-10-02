@@ -177,6 +177,13 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
 .ck.ck-balloon-panel {
     background-color: var(--ck-custom-box-bg-secondary);
 }
+.ck.ck-balloon-panel[class*=arrow_n]:before {
+    border-bottom-color: var(--ck-custom-border-color);
+}
+.ck.ck-balloon-panel[class*=arrow_n]:after,
+.ck.ck-balloon-panel.ck-balloon-panel_arrow_nw:after {
+    border-bottom-color: var(--ck-custom-box-bg-secondary);
+}
 .ck.ck-balloon-panel.ck-balloon-panel_arrow_s:after,
 .ck.ck-balloon-panel.ck-toolbar-container[class*=arrow_s]:after {
     border-top-color: var(--ck-custom-box-bg-secondary);
