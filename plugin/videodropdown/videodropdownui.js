@@ -33,7 +33,9 @@ export default class VideoDropdownUI extends Plugin {
             const dropdownView = createDropdown( locale );
 
             dropdownView.buttonView.set( {
-                icon: mediaIcon
+                label: 'Insert video', 
+                icon: mediaIcon, 
+                tooltip: true 
             });
             
             dropdownView.extendTemplate( {

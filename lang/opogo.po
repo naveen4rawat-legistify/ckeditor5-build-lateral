@@ -1,0 +1,7 @@
+msgctxt "Tooltip for the heading dropdown."
+msgid "Heading"
+msgstr "Paragraph format"
+
+msgctxt "Toolbar button tooltip for the text highlight feature."
+msgid "Highlight"
+msgstr "Text colour"

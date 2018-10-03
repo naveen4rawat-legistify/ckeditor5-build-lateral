@@ -47,7 +47,8 @@
 <script>
 	ClassicEditor.create( document.querySelector( '#editor' ), {
 			opogo: {
-				uploadUrl: 'https://api-dev.opogo.com/api/contents/PartnerUploadMedia'
+				uploadUrl: 'https://api-dev.opogo.com/api/contents/PartnerUploadMedia', 
+				blobStorageUrl: 'https://opogostorage.blob.core.windows.net'
         	}
 		})
 		.then( editor => {

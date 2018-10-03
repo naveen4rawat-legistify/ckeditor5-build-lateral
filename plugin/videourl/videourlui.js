@@ -64,8 +64,9 @@ export default class VideoUrlUI extends Plugin {
 
 		// Execute video url command after clicking the "Save" button.
 		this.listenTo( formView, 'submit', () => {
+			const blobStorageUrl = editor.config.get( 'opogo.blobStorageUrl' );
 			const link = formView.urlInputView.inputView.element.value;
-			if (link.indexOf("https://opogostorage.blob.core.windows.net") !== -1) {
+			if (link.indexOf(blobStorageUrl) !== -1) {
 				editor.execute( 'videoUpload', { link : link } );
 			} else {
 				editor.execute( 'videoUrl', link );	
