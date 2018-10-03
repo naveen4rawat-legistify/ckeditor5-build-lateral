@@ -39,6 +39,10 @@
     border-color: var(--ck-custom-border-color);
 }
 
+.ck-editor__editable {
+    min-height: 300px;
+}
+
 /* textarea styles */
 .ck.ck-editor__editable_inline {
     font-size: 18px;
@@ -188,7 +192,8 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
     border-bottom-color: var(--ck-custom-box-bg-secondary);
 }
 .ck.ck-balloon-panel.ck-balloon-panel_arrow_s:after,
-.ck.ck-balloon-panel.ck-toolbar-container[class*=arrow_s]:after {
+.ck.ck-balloon-panel.ck-toolbar-container[class*=arrow_s]:after,
+.ck.ck-balloon-panel.ck-toolbar-container[class*=arrow_n]:after {
     border-top-color: var(--ck-custom-box-bg-secondary);
 }
 .ck-balloon-panel .ck.ck-input-text,
