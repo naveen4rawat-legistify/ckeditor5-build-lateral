@@ -106,7 +106,8 @@ ClassicEditor.defaultConfig = {
 			}
 		]
 	},
-	toolbar: {
+	toolbar: {		
+		viewportTopOffset : 226,
 		items: [
 			'heading',
 			'|',
