@@ -39,7 +39,7 @@
     border-color: var(--ck-custom-border-color);
 }
 
-.ck-editor__editable {
+.ck-content {
     min-height: 300px;
 }
 

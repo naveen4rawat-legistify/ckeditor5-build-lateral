@@ -5,3 +5,7 @@ msgstr "Paragraph format"
 msgctxt "Toolbar button tooltip for the text highlight feature."
 msgid "Highlight"
 msgstr "Text colour"
+
+msgctxt "Toolbar button tooltip for removing text highlight."
+msgid "Remove highlight"
+msgstr "Remove colour"
