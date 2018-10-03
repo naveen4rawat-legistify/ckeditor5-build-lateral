@@ -57,6 +57,13 @@ ClassicEditor.defaultConfig = {
 		label: 'Text colour',
 		options: [
 			{
+				model: 'grayPen',
+				class: 'pen-gray',
+				title: 'Dark gray',
+				color: 'var(--ck-custom-gray-dark)',
+				type: 'pen'
+			},
+			{
 				model: 'orangePen',
 				class: 'pen-orange',
 				title: 'Orange',
@@ -83,23 +90,18 @@ ClassicEditor.defaultConfig = {
 				title: 'Green',
 				color: 'var(--ck-custom-green)',
 				type: 'pen'
-			},
-			{
-				model: 'grayPen',
-				class: 'pen-gray',
-				title: 'Dark gray',
-				color: 'var(--ck-custom-gray-dark)',
-				type: 'pen'
 			}
 		]
 	},
 	heading: {
 		options: [
-			{ 	model: 'paragraph',
+			{ 	
+				model: 'paragraph',
 				title: 'Body copy',
 				class: 'ck-heading_paragraph'
 			},
-			{ 	model: 'heading2',
+			{ 	
+				model: 'heading2',
 				view: 'h2',
 				title: 'Sub Header',
 				class: 'ck-heading_heading2'
