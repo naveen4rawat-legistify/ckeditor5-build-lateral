@@ -24,6 +24,7 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
 import VideoDropdown from '../plugin/videodropdown/videodropdown';
+import Fullscreen from '../plugin/fullscreen/fullscreen';
 
 import '../themes/style.css';
 
@@ -48,7 +49,8 @@ ClassicEditor.builtinPlugins = [
 	List,
 	Paragraph,
 	Highlight, 
-	VideoDropdown
+	VideoDropdown,
+	Fullscreen
 ];
 
 // Editor configuration.
@@ -127,7 +129,9 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'|',
 			'imageUpload',
-			'videoDropdown'
+			'videoDropdown',
+			'|',
+			'fullscreen'
 		]
 	},	
 	image: {
