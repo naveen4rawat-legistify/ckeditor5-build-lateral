@@ -59,6 +59,7 @@
 		})
 		.then( editor => {
 			window.editor = editor;
+			//editor.fire('change:viewportTopOffset', 0);
 		} )
 		.catch( err => {
 			console.error( err.stack );

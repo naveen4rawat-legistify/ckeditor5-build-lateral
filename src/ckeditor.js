@@ -111,7 +111,6 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	toolbar: {		
-		viewportTopOffset : 226,
 		items: [
 			'heading',
 			'|',
@@ -151,3 +150,14 @@ ClassicEditor.defaultConfig = {
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
+
+
+// Do not forget to add this into "ckeditor5-editor-classic\src\classiceditorui.js" line 69 
+/*
+
+	editor.on('change:viewportTopOffset', (evt, value) => {
+		view.stickyPanel.viewportTopOffset = value;
+	});
+
+
+*/
