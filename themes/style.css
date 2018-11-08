@@ -49,9 +49,29 @@
     color: var(--ck-custom-gray-dark);
     font-family: Arial, Helvetica, sans-serif;
 }
+.ck.ck-editor__editable_inline h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
 .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
     box-shadow: none;
     border-color: var(--ck-custom-blue-light);
+}
+@media (min-width: 767px) {
+    .opogo-hub-content-container h2 {
+        font-size: 36px;
+    }
+}
+.ck-content .image > figcaption {
+    color: var(--ck-custom-gray-dark);
+    background-color: transparent;
+}
+.ck-content .image > img {
+    width: 100%;
+}
+.video-container {
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 /* toolbar buttons */
@@ -160,6 +180,8 @@ a.ck.ck-button.ck-on:not(.ck-disabled):active {
 .pen-dark-blue,
 .pen-green,
 .pen-gray {
+    padding-left: 0;
+    padding-right: 0;
     background: none;
 }
 .pen-orange     { color: var(--ck-custom-orange); }
