@@ -103,8 +103,8 @@ class UploadAdapter {
 		const xhr = this.xhr = new XMLHttpRequest();
 
         xhr.open( 'POST', this.url, true );
-		xhr.setRequestHeader('Authorization', `bearer aCd2MquhujpoUjgvP6xuu_GxnirPJ0riiHCuwZUnxHU9Nmpz-Y1CcDwYuJAc3qyyKS-XNVn22JN6yIs_RWZ9xUuRcPP5evj2Ab6YE9T-P_UpSP2sroCUQqCL5tqceOfw6dw-4LCIjx2ERIpvaMSnRK5qwPPqlQLCMv7Le_TnuL3-eKI6L5wFG4AojZAYNalIhqCzlGQo9GkqJxLtwxCHzWD5xYnMBQNSTcix3wXHdOpEIY5SBt599E1_abv8lECBUtbW7woUfdq4RQb2Sq7dc39wMT8KBSE1d48-rYwqxeyowsntYE8tsVc6BUIVe2dFaUTr1NV3GQpuWQIyz63MEEeIFXLAHiiuZ7PI06EF5cBO4v9XhNInIe1ogTO3LCR1FMeVdYL1Dy2xOBZvPJDcEkoj7b59-RHMvTJIywYFwK-VmOHDNzw86sPNZU4ifOaLCA_AATRw_wegCGq6V-vJZJaz3XJgFlVP6ZHEGO_3jfI`);
-		//xhr.setRequestHeader('Authorization', `bearer ${localStorage.getItem('token')}`);
+		//xhr.setRequestHeader('Authorization', `bearer aCd2MquhujpoUjgvP6xuu_GxnirPJ0riiHCuwZUnxHU9Nmpz-Y1CcDwYuJAc3qyyKS-XNVn22JN6yIs_RWZ9xUuRcPP5evj2Ab6YE9T-P_UpSP2sroCUQqCL5tqceOfw6dw-4LCIjx2ERIpvaMSnRK5qwPPqlQLCMv7Le_TnuL3-eKI6L5wFG4AojZAYNalIhqCzlGQo9GkqJxLtwxCHzWD5xYnMBQNSTcix3wXHdOpEIY5SBt599E1_abv8lECBUtbW7woUfdq4RQb2Sq7dc39wMT8KBSE1d48-rYwqxeyowsntYE8tsVc6BUIVe2dFaUTr1NV3GQpuWQIyz63MEEeIFXLAHiiuZ7PI06EF5cBO4v9XhNInIe1ogTO3LCR1FMeVdYL1Dy2xOBZvPJDcEkoj7b59-RHMvTJIywYFwK-VmOHDNzw86sPNZU4ifOaLCA_AATRw_wegCGq6V-vJZJaz3XJgFlVP6ZHEGO_3jfI`);
+		xhr.setRequestHeader('Authorization', `bearer ${localStorage.getItem('token')}`);
 		xhr.responseType = 'json';
 	}
 
